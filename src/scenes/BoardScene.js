@@ -39,6 +39,17 @@ export class BoardScene extends Scene {
     // Score
     this.add.text(12, 10, 'Score:', { fontSize: '24px', fontFamily: 'monospace' });
     this.scoreText = this.add.text(100, 10, this.points, { fontSize: '24px', fontFamily: 'monospace' });
+
+    // Lose condition
+    this.hasLost = false;
+
+    // Add world bounds collision event for the ball
+    this.ball.body.onWorldBounds = true;
+    this.physics.world.on('worldbounds', (body, up, down, left, right) => {
+      if (body.gameObject === this.ball) {
+        this.sound.play('wall');
+      }
+    });
   }
   update() {
     this.paddle.setVelocity(0);
@@ -50,14 +61,17 @@ export class BoardScene extends Scene {
       this.paddle.setVelocityX(400);
     }
 
-    if (this.ball.y > this.scale.height) {
+    if (this.ball.y > this.scale.height && !this.hasLost) {
       this.physics.pause();
       this.ball.setTint(0xff0000);
+      this.sound.play('lose');
+      this.hasLost = true;
     }
   }
 
   hitPaddle(paddle, ball) {
     this.points += 1;
     this.scoreText.setText(this.points);
+    this.sound.play('paddle');
   }
 }
