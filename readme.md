@@ -17,9 +17,8 @@ This is a simple Pong game in Phaser. PRs welcome. Feel free to contibute for be
 -   Add sounds.
 -   Add a final scene.
 -   Add a menu scene.
--   Add a high score scene.
--   Increase the difficulty changing the speed of the ball.
--   Change the codebase from Javascript to Typescript.
+-   Increase the difficulty by changing the ball's speed.
+-   Change the codebase from JavaScript to TypeScript.
 -   Any other feature that the comunity would like to see.
 
 ## Contributing
