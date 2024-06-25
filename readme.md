@@ -12,15 +12,6 @@ This is a simple Pong game in Phaser. PRs welcome. Feel free to contibute for be
 4. Open your browser and navigate to the url your terminal shows.
 5. If any of this steps fails, please open an issue.
 
-## Features pending
-
--   Add sounds.
--   Add a final scene.
--   Add a menu scene.
--   Increase the difficulty by changing the ball's speed.
--   Change the codebase from JavaScript to TypeScript.
--   Any other feature that the comunity would like to see.
-
 ## Contributing
 
 When contributing to this repository, please first **ask to be assigned to an issue**.
