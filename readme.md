@@ -2,7 +2,9 @@
 
 This is a simple Pong game in Phaser. PRs welcome. Feel free to contibute for better designs and improvements.
 
-![pong](/public/assets/pong.gif)
+| ![1](/public/assets/1.png) | ![2](/public/assets/2.png) |    ![3](/public/assets/3.png)    |
+| :------------------------: | :------------------------: | :------------------------------: |
+| ![4](/public/assets/4.png) | ![5](/public/assets/5.png) | ![pong](/public/assets/pong.gif) |
 
 ## How to start the project
 
