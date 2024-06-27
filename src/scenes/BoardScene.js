@@ -28,6 +28,13 @@ export class BoardScene extends Scene {
     this.ball.setBounce(1, 1);
     this.ball.setVelocity(200, 200);
 
+    // Randomize ball direction at beginning
+    const speed = 250; 
+    const angle = Phaser.Math.FloatBetween(0, Math.PI * 2); // randomize angle 
+    const velocityX = speed * Math.cos(angle);  // determine direction and speed of ball
+    const velocityY = speed * Math.sin(angle);  // determine direction and speed of ball
+    this.ball.setVelocity(velocityX, velocityY);
+
     // Collisions
     this.physics.world.checkCollision.down = false
     this.ball.setCollideWorldBounds(true);
