@@ -1,18 +1,14 @@
 import { Scene } from "phaser";
+import { gameState } from "../GameState";
 
 export class BoardScene extends Scene {
-  points = 0;
-  scoreText = null;
-  level = 1;
-  levelText = null;
 
   constructor() {
     super("BoardScene");
   }
 
   init() {
-    this.points = 0;
-    this.level = 1;
+    gameState.reset();
   }
 
   create() {
@@ -29,7 +25,7 @@ export class BoardScene extends Scene {
     this.ball.setVelocity(200, 200);
 
     // Randomize ball direction at beginning
-    const speed = 250; 
+    const speed = 250;
     const angle = Phaser.Math.FloatBetween(0, Math.PI * 2); // randomize angle 
     const velocityX = speed * Math.cos(angle);  // determine direction and speed of ball
     const velocityY = speed * Math.sin(angle);  // determine direction and speed of ball
@@ -47,11 +43,11 @@ export class BoardScene extends Scene {
 
     // Score
     this.add.text(250, 10, 'Score:', { fontSize: '24px', fontFamily: 'monospace' });
-    this.scoreText = this.add.text(350, 10, this.points, { fontSize: '24px', fontFamily: 'monospace' });
+    this.scoreText = this.add.text(350, 10, gameState.getPoints(), { fontSize: '24px', fontFamily: 'monospace' });
 
     // Level
     this.add.text(12, 10, 'Level:', { fontSize: '24px', fontFamily: 'monospace' });
-    this.levelText = this.add.text(100, 10, this.level, { fontSize: '24px', fontFamily: 'monospace' });
+    this.levelText = this.add.text(100, 10, gameState.getLevel(), { fontSize: '24px', fontFamily: 'monospace' });
 
     // Lose condition
     this.hasLost = false;
@@ -79,36 +75,37 @@ export class BoardScene extends Scene {
       this.ball.setTint(0xff0000);
       this.sound.play('lose');
       this.hasLost = true;
+      this.scene.start("FinalScene");
     }
   }
 
   hitPaddle(paddle, ball) {
-    this.points += 1;
-    this.scoreText.setText(this.points);
+    gameState.addPoints(1);
+    this.scoreText.setText(gameState.getPoints());
     this.sound.play('paddle');
 
-    if (this.points === 3) {
+    if (gameState.getPoints() === 3) {
       this.changeLevel(2, 300, 300, 0xf48c06);
-    } else if (this.points === 7) {
+    } else if (gameState.getPoints() === 7) {
       this.changeLevel(3, 350, 350, 0xe85d04);
-    } else if (this.points === 12) {
+    } else if (gameState.getPoints() === 12) {
       this.changeLevel(4, 400, 400, 0xdc2f02);
-    } else if (this.points === 18) {
+    } else if (gameState.getPoints() === 18) {
       this.changeLevel(5, 450, 450, 0xd00000);
-    } else if (this.points === 25) {
+    } else if (gameState.getPoints() === 25) {
       this.changeLevel(6, 500, 500, 0x9d0208);
-    } else if (this.points === 33) {
+    } else if (gameState.getPoints() === 33) {
       this.changeLevel(7, 550, 550, 0x6a040f);
-    } else if (this.points === 42) {
+    } else if (gameState.getPoints() === 42) {
       this.changeLevel(8, 600, 600, 0x370617);
-    } else if (this.points === 52) {
+    } else if (gameState.getPoints() === 52) {
       this.changeLevel(9, 650, 650, 0x03071e);
     }
   }
 
   changeLevel(newLevel, velocityX, velocityY, backgroundColor) {
-    this.level = newLevel;
-    this.levelText.setText(this.level);
+    gameState.setLevel(newLevel);
+    this.levelText.setText(gameState.getLevel());
     this.ball.setVelocity(velocityX, velocityY);
     this.cameras.main.setBackgroundColor(backgroundColor);
   }
