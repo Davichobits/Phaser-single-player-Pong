@@ -12,6 +12,10 @@ export class BoardScene extends Scene {
   }
 
   create() {
+    // Background
+    // const background = this.add.image(0, 0, 'background');
+    // background.setOrigin(0, 0);
+
     // input
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -85,28 +89,27 @@ export class BoardScene extends Scene {
     this.sound.play('paddle');
 
     if (gameState.getPoints() === 3) {
-      this.changeLevel(2, 300, 300, 0xf48c06);
+      this.changeLevel(2, 300, 300);
     } else if (gameState.getPoints() === 7) {
-      this.changeLevel(3, 350, 350, 0xe85d04);
+      this.changeLevel(3, 350, 350);
     } else if (gameState.getPoints() === 12) {
-      this.changeLevel(4, 400, 400, 0xdc2f02);
+      this.changeLevel(4, 400, 400);
     } else if (gameState.getPoints() === 18) {
-      this.changeLevel(5, 450, 450, 0xd00000);
+      this.changeLevel(5, 450, 450);
     } else if (gameState.getPoints() === 25) {
-      this.changeLevel(6, 500, 500, 0x9d0208);
+      this.changeLevel(6, 500, 500);
     } else if (gameState.getPoints() === 33) {
-      this.changeLevel(7, 550, 550, 0x6a040f);
+      this.changeLevel(7, 550, 550);
     } else if (gameState.getPoints() === 42) {
-      this.changeLevel(8, 600, 600, 0x370617);
+      this.changeLevel(8, 600, 600);
     } else if (gameState.getPoints() === 52) {
-      this.changeLevel(9, 650, 650, 0x03071e);
+      this.changeLevel(9, 650, 650);
     }
   }
 
-  changeLevel(newLevel, velocityX, velocityY, backgroundColor) {
+  changeLevel(newLevel, velocityX, velocityY) {
     gameState.setLevel(newLevel);
     this.levelText.setText(gameState.getLevel());
     this.ball.setVelocity(velocityX, velocityY);
-    this.cameras.main.setBackgroundColor(backgroundColor);
   }
 }

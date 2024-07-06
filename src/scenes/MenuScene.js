@@ -7,6 +7,7 @@ export class MenuScene extends Scene {
 
 
   create() {
+    this.scene.launch('AnimatedBackground');
     const gameWidth = this.scale.width
     const gameHeight = this.scale.height
 

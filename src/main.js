@@ -3,13 +3,13 @@ import { Preloader } from "./preloader";
 import { BoardScene } from "./scenes/BoardScene";
 import { MenuScene } from "./scenes/MenuScene";
 import { FinalScene } from "./scenes/FinalScene";
+import { AnimatedBackground } from "./scenes/AnimatedBackground";
 
 const config = {
     type: Phaser.AUTO,
     parent: "phaser-container",
-    width: 400,
-    height: 600,
-    backgroundColor: "0xfaa307",
+    width: 448,
+    height: 640,
     pixelArt: true,
     roundPixel: false,
     max: {
@@ -28,6 +28,7 @@ const config = {
     },
     scene: [
         Preloader,
+        AnimatedBackground,
         MenuScene,
         BoardScene,
         FinalScene
